@@ -77,7 +77,7 @@ class RegisterController extends Controller
 
     private function sendVerifyEmailTo($user){
         $data = [
-            'url' => route('email.verify',['token'=>$user->comfirmation_token]),//点击时更新的url
+            'url' => route('email.verify',['token'=>$user->confirmation_token]),//点击时更新的url
             'name'=>$user->name
         ];
         $template = new SendCloudTemplate('zhihu_app_register', $data);
