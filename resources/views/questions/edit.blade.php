@@ -8,11 +8,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">发布问题</div>
                     <div class="panel-body">
-                        <form action="/questions" method="post">
+                        <form action="/questions/{{$question->id}}" method="post">
+                            {{method_field('PATCH')}}
                             {!! csrf_field() !!}
                             <div class="form-group" {{ $errors->has('title') ? ' has-error' : '' }}>
                                 <label for="title">标题</label>
-                                <input type="text" value="{{old('title')}}" name="title" class="form-control" placeholder="标题" id="title">
+                                <input type="text" value="{{$question->title}}" name="title" class="form-control" placeholder="标题" id="title">
                                 @if ($errors->has('title'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('title') }}</strong>
@@ -21,12 +22,16 @@
                             </div>
                             <div class="form-group">
                                 <select name="topics[]" class="js-example-placeholder-multiple js-data-example-ajax form-control"  multiple="multiple">
+                                    @foreach($question->topics as $topic)
+                                        <option value="{{$topic->id}}" selected="selected">{{$topic->name}}</option>
+                                    @endforeach
+
                                 </select>
                             </div>
                             <div class="form-group" {{ $errors->has('title') ? ' has-error' : '' }}>
                                 <label for="title">描述</label>
                                 <script id="container" name="body" style="height:200px" type="text/plain">
-                                {!!old('body')!!}
+                                {!!$question->body!!}
                                 </script>
                                 @if ($errors->has('body'))
                                     <span class="help-block">
@@ -41,7 +46,7 @@
             </div>
         </div>
     </div>
-    @section('js')
+@section('js')
     <!-- 实例化编辑器 -->
     <script type="text/javascript">
         var ue = UE.getEditor('container',{
@@ -98,5 +103,4 @@
     </script>
     @endsection
 
-    <!-- 编辑器容器 -->
 @endsection

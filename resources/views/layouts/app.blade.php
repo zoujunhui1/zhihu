@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/select2.min.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -88,11 +89,13 @@
         </div>
         @yield('content')
     </div>
-
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script src="/js/select2.min.js"></script>
     <script>
         $('#flash-overlay-modal').modal();
     </script>
+    @yield('js')
+
 </body>
 </html>

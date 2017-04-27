@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Naux\Mail\SendCloudTemplate;
@@ -19,6 +20,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password','avatar','comfirmation_token'
     ];
+
+    public function owns(Model $model){
+        return $this->id == $model->user_id;
+    }
 
     /**
      * The attributes that should be hidden for arrays.
