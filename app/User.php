@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name', 'email', 'password','avatar','comfirmation_token'
     ];
 
+    public function answers(){
+        return $this->hasMany(Answer::class);
+    }
+
     public function owns(Model $model){
         return $this->id == $model->user_id;
     }

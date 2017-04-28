@@ -13,8 +13,8 @@ use App\Question;
 use App\Topic;
 
 class QuestionRepository {
-    public function byIdWithTopics($id){
-        return Question::where('id',$id)->with('topics')->first();
+    public function byIdWithTopicsAndAnswers($id){
+        return Question::where('id',$id)->with(['topics','answers'])->first();
     }
 
     public function create(array $attributes){
