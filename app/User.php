@@ -29,6 +29,12 @@ class User extends Authenticatable
         return $this->id == $model->user_id;
     }
 
+    public function follows($question){
+        return Follow::create([
+           'question_id'=>$question,
+            'user_id'=>$this->id
+        ]);
+    }
     /**
      * The attributes that should be hidden for arrays.
      *
