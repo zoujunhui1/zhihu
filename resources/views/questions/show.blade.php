@@ -25,8 +25,11 @@
                                 {{ csrf_field() }}
                                 <span class="btn btn-primary">删除</span>
                             </form>
-
                         @endif
+                        <comments type="question"
+                                    model="{{$question->id}}"
+                                    count="{{$question->comments()->count()}}">
+                        </comments>
                     </div>
                 </div>
             </div>
@@ -63,6 +66,10 @@
                                     </h4>
                                     {!! $answer->body !!}
                                 </div>
+                                <comments type="answer"
+                                          model="{{$answer->id}}"
+                                          count="{{$answer->comments()->count()}}">
+                                </comments>
                             </div>
                         @endforeach
                         @if(Auth::check())
@@ -122,7 +129,7 @@
                             </div>
                         </div>
                         <user-follow-button user="{{$question->user_id}}"></user-follow-button>
-                        <a href="#editor" class="btn btn-default">发送私信</a>
+                        <send-message user="{{$question->user_id}}"></send-message>
                     </div>
                 </div>
             </div>
